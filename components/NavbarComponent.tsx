@@ -27,6 +27,11 @@ export default function Navbar() {
                 Play
             </a>
         </Link>
+        <Link href={"/History"}>
+            <a>
+                History
+            </a>
+        </Link>
 
         <div className={styles.expanded}>
         </div>
@@ -46,8 +51,8 @@ export default function Navbar() {
                 return <>Sign in as {user.displayName}</>
             })()}
         </p>
-        {(()=>{
-            if(user){
+        {(() => {
+            if (user) {
                 return <img src={user.photoURL!}></img >
             }
         })()}

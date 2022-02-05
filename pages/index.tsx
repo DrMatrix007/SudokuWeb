@@ -4,6 +4,10 @@ import styles from '../styles/Home.module.css'
 import {useAuthState} from 'react-firebase-hooks/auth'
 import { getAuth } from 'firebase/auth'
 
+
+
+
+
 export default function Home() {
   const auth = getAuth()
 

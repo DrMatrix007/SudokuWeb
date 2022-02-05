@@ -34,7 +34,7 @@ function arrayRotateNumberOfTimes<T>(arr: Array<T>, value: number) {
     return arr;
 }
 
-const BOARD_SIZE = 9;
+export const BOARD_SIZE = 9;
 
 function shuffleRow(board: Board, row1: number, row2: number) {
     var old1 = board[row1];
@@ -102,15 +102,15 @@ export default function getSudoku(removeCount:number = 0) {
             shuffleRow(board, index * 3 + i, index * 3 + range[i]);
         }
     }
-    console.log(board);
-
+    var pos:Array<{x:number,y:number}> = [];
     for (let index = 0; index < removeCount; index++) {
     
         var row = Math.floor(Math.random() * BOARD_SIZE);
         var col = Math.floor(Math.random() * BOARD_SIZE);
+        pos.push({x:col,y:row});
         board[row][col] = 0;
 
     }
 
-    return board;
+    return [board,pos] as [Board,Array<{x:number,y:number}>];
 }
