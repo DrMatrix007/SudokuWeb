@@ -24,5 +24,5 @@ export default function useCollection(ref:CollectionReference,q: (q:Query)=>Quer
         return () => unsubscribe();
     }, []);
 
-    return [docs, loading, error] as [Array<any>, boolean, boolean];
+    return [docs, loading, error] as [Array<{id:string,[field:string]:any}>, boolean, boolean];
 }

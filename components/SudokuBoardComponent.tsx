@@ -7,7 +7,7 @@ import { stringLength } from "@firebase/util";
 export type SudokuBoardProps = {
     sudoku: Board;
     inputPositions: Array<{ x: number; y: number }>;
-    onChange: (board: Board,pos:{x:number,y:number},value:number) => void;
+    onChange: (board: Board,pos:{x:number,y:number},value:number,isvalid:boolean) => void;
 };
 type OneCharInputProps = {
     defualtValue: string;
@@ -81,7 +81,7 @@ export default function SudokuBoard(props: SudokuBoardProps) {
                                         valuesAllowed="123456789"
                                         onChange={(a: string) => {
                                             props.sudoku[i][j] = parseInt(a);
-                                            props.onChange(props.sudoku,{x:j,y:i},parseInt(a));
+                                            props.onChange(props.sudoku,{x:j,y:i},parseInt(a),isV);
                                         }}
                                     />)
                                 })()

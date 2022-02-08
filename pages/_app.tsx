@@ -1,6 +1,8 @@
 import '../styles/globals.css'
 import { initializeApp } from 'firebase/app'
 import Navbar from '@components/NavbarComponent';
+import Head from 'next/head';
+import AppBodyComponent from '@components/AppBodyComponent';
 const firebaseConfig = {
   apiKey: "AIzaSyB_kQpCOdmvkb8krKPpt1JpRthGFXCi1aQ",
   authDomain: "sudoku-matrix.firebaseapp.com",
@@ -20,11 +22,10 @@ function MyApp({ Component, pageProps }: any) {
 
 
   return (
-    <div className='content-holder'>
-      <Navbar />
-      <Component {...pageProps} />
-    </div>
-  )
+    <AppBodyComponent>
+      <Component {...pageProps}/>
+    </AppBodyComponent>
+    );
 }
 
 export default MyApp;
