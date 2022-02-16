@@ -1,10 +1,13 @@
 .navbar {
-    background-color: #219F94;
+    background-color: #0077B6;
     /* height: 3rem; */
     display: flex;
     flex-direction: row;
     align-items: center;
 
+}
+.navbar * {
+    color: white;
 }
 .navbar > * {
     padding: 0.5rem;

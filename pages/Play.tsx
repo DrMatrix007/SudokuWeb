@@ -6,6 +6,8 @@ import React, { useEffect, useState } from 'react';
 import useArray from '@hooks/useArray'
 import Data from '@utils/data';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import isValidConfig from '@utils/sudoku_checker';
 
 
 
@@ -15,17 +17,19 @@ export default function Play() {
     var [startBoard, setStartBoard] = useState<Board>();
     var [currentSudoku, setCurrentSudoku] = useState<Board>();
     var [positions, setPositions] = useState<Array<{ x: number, y: number }>>([]);
-    var [steps, addStep,] = useArray<{ place: number, value: number,isValid:boolean }>([]);
+    var [steps, addStep,] = useArray<{ place: number, value: number, isValid: boolean }>([]);
     useEffect(() => {
-        var sudoku = getSudoku(10);
+        var sudoku = getSudoku(5);
         setCurrentSudoku(sudoku[0]);
         setStartBoard(sudoku[0]);
         setPositions(sudoku[1]);
     }, [])
 
+    const router = useRouter();
+
     const saveValues = async () => {
         if (startBoard && user) {
-            await Data.addGameHistoryToUser(startBoard, steps, user.uid)
+            return await Data.addGameHistoryToUser(startBoard, steps, user.uid)
         }
     }
 
@@ -43,20 +47,27 @@ export default function Play() {
                 {
                     user ? <>
                         {
-                            currentSudoku ? <SudokuBoard inputPositions={positions} sudoku={currentSudoku.map(a => a.map(a => a)) as Board} onChange={(a, b, c,isValid) => {
+                            currentSudoku ? <SudokuBoard inputPositions={positions} sudoku={currentSudoku.map(a => a.map(a => a)) as Board} onChange={async (a, b, c, isValid) => {
                                 let last = steps[steps.length - 1];
                                 if (!last) {
-                                    addStep({ place: b.y * 9 + b.x, value: c,isValid:isValid });
+                                    addStep({ place: b.y * 9 + b.x, value: c, isValid: isValid });
                                 } else if ((last.place !== b.y * 9 + b.x || last.value !== c)) {
-                                    addStep({ place: b.y * 9 + b.x, value: c ,isValid:isValid });
+                                    addStep({ place: b.y * 9 + b.x, value: c, isValid: isValid });
                                 }
                                 setCurrentSudoku(a);
+
+                                if (isValidConfig(a)) {
+                                    var id = await saveValues();
+                                    router.push(`/History/${id}/Done`);
+                                }
+
+
                             }} /> : <p>loading</p>
                         }
                     </> :
                         <SignIn />
                 }
-                <button onClick={() => saveValues()}>save progress</button>
+                {/* <button onClick={() => saveValues()}>save progress</button> */}
             </div>
         </>
 

@@ -12,8 +12,11 @@ export default function StatsNavbarComponent() {
 
 
     return <div className={styles.navbar}>
-        <Link href={`/History/${id}/test`}>
-            <a>tests</a>
+        <Link href={`/History/${id}`}>
+            <a>Defualt Data</a>
+        </Link>
+        <Link href={`/History/${id}/PlacedData`}>
+            <a>Placed - Data</a>
         </Link>
     </div>;
 }

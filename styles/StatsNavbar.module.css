@@ -1,4 +1,10 @@
-.nvabar { 
-    padding: 2rem;
-    margin: 10px;
+.navbar { 
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1 0;
+    background-color: #00B4D8;
+}
+.navbar > * {
+    padding: 0.5rem;
+    margin: 0.5rem;
 }

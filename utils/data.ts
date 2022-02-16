@@ -5,7 +5,7 @@ import { sortAndDeduplicateDiagnostics } from "typescript";
 
 export default class Data {
 
-    static async addGameHistoryToUser(board:Board,steps:Array<{ place: number, value: number,isValid:boolean }>, userId:string): Promise<void> {
+    static async addGameHistoryToUser(board:Board,steps:Array<{ place: number, value: number,isValid:boolean }>, userId:string): Promise<string> {
         const db = getFirestore();
         const udoc = doc( collection(db,("sudokus")),userId);
         const sdoc = doc(collection(udoc, "userSudokus"));
@@ -16,6 +16,7 @@ export default class Data {
         };
         
         await  setDoc(sdoc,(data), { merge: true });
+        return sdoc.id;
     }
     static boardToString(board: Board) {
         var str = "";

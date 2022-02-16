@@ -16,8 +16,8 @@
 }
 .sudokuTable {
     display: grid;
-    grid-template-columns: repeat(9,10vw);
-    grid-template-rows: repeat(9,7vh);
+    grid-template-columns: repeat(9,min(8vh,10vw));
+    grid-template-rows: repeat(9,min(8vh,10vw));
 
     
 }
@@ -28,9 +28,11 @@
 .sudokuTable  input {
     text-align: center;
     /* background-color: aqua; */
+    border:none;
+
 }
 .input {
-    background-color: black;
+    background-color: #03045E;
     color: white;
 }
 .valid {
@@ -39,7 +41,7 @@
 }
 .invalid {
     background-color: red;
-    color: black;
+    color: white;
 
 }
 
@@ -56,19 +58,19 @@
 
 
 .rightB {
-    border-right: 5px  solid black;
+    border-right: 5px  solid var(--baord-border-color);
 }
 
 .leftB {
-    border-left: 5px solid black;
+    border-left: 5px solid var(--baord-border-color);
 }
 
 .topB {
-    border-top: 5px solid black;
+    border-top: 5px solid var(--baord-border-color);
 }
 
 .bottomB {
-    border-bottom: 5px solid black;
+    border-bottom: 5px solid var(--baord-border-color);
 }
 
 .sudokuTable > div{

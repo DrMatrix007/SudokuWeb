@@ -1,6 +1,5 @@
-import LoadingComponent from '@components/LoadingComponent';
 import SignIn from '@components/SignInComponent';
-import IsValidStatsComponent from '@components/Stats/IsValidStatsComponent';
+import PlacedStats from '@components/Stats/PlacedStats';
 import StatsLayout from '@components/Stats/StatsLayout';
 import useDocument from '@hooks/useDocument';
 import useUser from '@hooks/useUser';
@@ -8,17 +7,10 @@ import { User } from 'firebase/auth';
 import { collection, doc, getFirestore } from 'firebase/firestore';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { userInfo } from 'os';
-import React from 'react';
-
-type HistoryDataProps = {
-    id: string;
-    user: User;
-}
-
-export default function HistoryWithID() {
+import React from 'react'
 
 
+export default function PlacedData() {
 
     const router = useRouter();
 
@@ -29,11 +21,20 @@ export default function HistoryWithID() {
 
 
     return <>
-        {user ? <HistoryData id={id} user={user} /> : <SignIn />}
+        {user ? <PlacedDataWithData id={id} user={user} /> : <SignIn />}
     </>;
 }
 
-function HistoryData(props: HistoryDataProps) {
+
+
+type PlacedDataProps = {
+    id: string;
+    user: User;
+}
+
+
+
+function PlacedDataWithData(props: PlacedDataProps) {
 
     const firestore = getFirestore();
 
@@ -52,34 +53,16 @@ function HistoryData(props: HistoryDataProps) {
             isValid: step.isValid
         }
     });
-
-
-
-
-
-    // console.log(data);
-
     return (
         <StatsLayout>
-
             <Head>
-                <title>Stats - {props.user.displayName}</title>
+                <title>Placed Data</title>
             </Head>
             <div className='center'>
-                {!loading ?
-                    <>
-                    <h1>
-                        Main Stats
-                    </h1>
-                        <IsValidStatsComponent list={steps} />
-                    </>
-                    : <LoadingComponent />
-                }
-
-
+                <h1>Placed - Data</h1>
+                <PlacedStats list={steps} />
             </div>
         </StatsLayout>
 
-
-    );
+    )
 }
