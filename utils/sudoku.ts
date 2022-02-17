@@ -9,10 +9,11 @@ export type Board = [
     number[],
     number[]
 ];
-
+// this function shuffles the array
 function shuffle<T>(array: Array<T>) {
     return array.sort(() => 0.5 - Math.random());
 }
+// this function rotates the array
 function arrayRotate<T>(arr: Array<T>, reverse: boolean) {
     arr = arr.map((a) => a);
 
@@ -20,6 +21,7 @@ function arrayRotate<T>(arr: Array<T>, reverse: boolean) {
     else arr.push(arr.shift()!);
     return arr;
 }
+//this funciton rotates number of times an array
 function arrayRotateNumberOfTimes<T>(arr: Array<T>, value: number) {
     arr = arr.map((a) => a);
     var r = false;
@@ -35,12 +37,13 @@ function arrayRotateNumberOfTimes<T>(arr: Array<T>, value: number) {
 }
 
 export const BOARD_SIZE = 9;
-
+// this function shuffles the board with the rows
 function shuffleRow(board: Board, row1: number, row2: number) {
     var old1 = board[row1];
     board[row1] = board[row2];
     board[row2] = old1;
 }
+// this function shuffles the board with the cols
 function shuffleColumn(board: Board, col1: number, col2: number) {
     for (let index = 0; index < BOARD_SIZE; index++) {
         var old1 = board[index][col1];
@@ -49,7 +52,8 @@ function shuffleColumn(board: Board, col1: number, col2: number) {
     }
 }
 
-export default function getSudoku(removeCount:number = 0) {
+export default function getSudoku(removeCount: number = 0) {
+    // this function new returns a sudoku board
     var range = [0, 1, 2];
     var values = [];
     for (let i = 0; i < BOARD_SIZE; i++) {
@@ -70,7 +74,7 @@ export default function getSudoku(removeCount:number = 0) {
         arrayRotateNumberOfTimes(values, 20),
     ];
 
-    // range.sort((a, b) => 0.5 - Math.random());
+    // this part shuffles the board with the rows
     range = shuffle(range);
     for (let rangei = 0; rangei < range.length; rangei++) {
         for (let i = 0; i < 3; i++) {
@@ -80,6 +84,7 @@ export default function getSudoku(removeCount:number = 0) {
         }
     }
 
+    // this part shuffles the board with the cols
     range = shuffle(range);
     for (let rangei = 0; rangei < range.length; rangei++) {
         for (let i = 0; i < 3; i++) {
@@ -102,15 +107,15 @@ export default function getSudoku(removeCount:number = 0) {
             shuffleRow(board, index * 3 + i, index * 3 + range[i]);
         }
     }
-    var pos:Array<{x:number,y:number}> = [];
+    var pos: Array<{ x: number; y: number }> = [];
+    // this part removes some numbers from the board
+
     for (let index = 0; index < removeCount; index++) {
-    
         var row = Math.floor(Math.random() * BOARD_SIZE);
         var col = Math.floor(Math.random() * BOARD_SIZE);
-        pos.push({x:col,y:row});
+        pos.push({ x: col, y: row });
         board[row][col] = 0;
-
     }
 
-    return [board,pos] as [Board,Array<{x:number,y:number}>];
+    return [board, pos] as [Board, Array<{ x: number; y: number }>];
 }

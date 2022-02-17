@@ -14,6 +14,7 @@ type GameComponentProps = {
     dateCreated: Date,
     id: string
 }
+//each individual game 'title'
 function GameComponent(props: GameComponentProps) {
     return (
         <div>
@@ -31,7 +32,7 @@ function GameComponent(props: GameComponentProps) {
 export default function History() {
 
     const user = useUser();
-
+    //if the user is not logged in, show the sign in page
     return (
         <>
             {user ? <HistoryWithID user={user} /> : <SignIn />}
@@ -58,7 +59,7 @@ function HistoryWithID({ user }: { user: User }) {
             dateCreated: game.createdAt
         }
     })
-
+    
     return <>
         <Head>
             <title>
@@ -66,10 +67,12 @@ function HistoryWithID({ user }: { user: User }) {
             </title>
         </Head>
         <h1>History</h1>
+        {/* each game that is stored get mapped into the ui */}
         {loading ? <div className='center'>
             <LoadingComponent />
         </div>
             : games.map((a, i) => <GameComponent key={i} id={a.id} game={a.board} dateCreated={(a.dateCreated as Timestamp).toDate()} />)
         }
     </>
+
 }

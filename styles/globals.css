@@ -1,5 +1,6 @@
 :root {
-    --baord-border-color: #03045E;
+    --board-border-color: #03045E;
+    --board-light-border-color: #6163df;
 }
 
 html,

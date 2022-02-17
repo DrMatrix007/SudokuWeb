@@ -4,8 +4,9 @@ import { stdin } from "process";
 import { sortAndDeduplicateDiagnostics } from "typescript";
 
 export default class Data {
-
+    
     static async addGameHistoryToUser(board:Board,steps:Array<{ place: number, value: number,isValid:boolean }>, userId:string): Promise<string> {
+        //add game history to user
         const db = getFirestore();
         const udoc = doc( collection(db,("sudokus")),userId);
         const sdoc = doc(collection(udoc, "userSudokus"));
@@ -19,6 +20,7 @@ export default class Data {
         return sdoc.id;
     }
     static boardToString(board: Board) {
+        //convert board to string
         var str = "";
         for (let i = 0; i < BOARD_SIZE; i++) {
             for (let j = 0; j < BOARD_SIZE; j++) {

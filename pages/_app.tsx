@@ -14,13 +14,11 @@ const firebaseConfig = {
 };
 
 function MyApp({ Component, pageProps }: any) {
+  
+  //initialize Firebase app, and if it alearly exists, catch the error that it will throw.
   try {
     initializeApp(firebaseConfig);
-  } catch (e) {
-
-  }
-
-
+  } catch (e) {}
   return (
     <AppBodyComponent>
       <Component {...pageProps}/>

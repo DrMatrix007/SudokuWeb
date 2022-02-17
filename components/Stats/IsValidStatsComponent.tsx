@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 function mostCommon<T>(arr: T[]) {
     return arr.sort((a, b) => {
@@ -19,15 +19,18 @@ export type IsValidStatsComponentProps = {
 export default function IsValidStatsComponent(props: IsValidStatsComponentProps) {
     const { list } = props;
 
-    const stats = {
-        precentageOfSucces: (100 * (list.filter(step => step.isValid).length) / list.length),
-        succeses: list.filter(step => step.isValid).length,
-        mostCommonPlaceCol: mostCommon(list.map(step => step.col)),
-        mostCommonPlaceRow: mostCommon(list.map(step => step.row)),
+    // get some stats from the big data that was provided
+    const stats = useMemo(() => {
+        return {
+            precentageOfSucces: (100 * (list.filter(step => step.isValid).length) / list.length),
+            succeses: list.filter(step => step.isValid).length,
+            mostCommonPlaceCol: mostCommon(list.map(step => step.col)),
+            mostCommonPlaceRow: mostCommon(list.map(step => step.row)),
 
-        mostUncommonPlaceCol: mostUnCommon(list.map(step => step.col)),
-        mostUncommonPlaceRow: mostUnCommon(list.map(step => step.row)),
-    }
+            mostUncommonPlaceCol: mostUnCommon(list.map(step => step.col)),
+            mostUncommonPlaceRow: mostUnCommon(list.map(step => step.row)),
+        }
+    }, props.list)
 
     return (
         <table>

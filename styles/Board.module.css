@@ -1,7 +1,5 @@
 /* create a responsive button */
 
-
-
 .content-holder {
     height: 100%;
 }
@@ -16,37 +14,32 @@
 }
 .sudokuTable {
     display: grid;
-    grid-template-columns: repeat(9,min(8vh,10vw));
-    grid-template-rows: repeat(9,min(8vh,10vw));
-
-    
+    grid-template-columns: repeat(9, min(8vh, 10vw));
+    grid-template-rows: repeat(9, min(8vh, 10vw));
 }
 
 .sudokuTable * {
     font-size: 150%;
 }
-.sudokuTable  input {
+.sudokuTable input {
     text-align: center;
     /* background-color: aqua; */
-    border:none;
-
+    border: none;
 }
 .input {
-    background-color: #03045E;
+    background-color: #03045e;
     color: white;
 }
 .valid {
-    background-color: #00FF00;
+    background-color: #00ff00;
     color: black;
 }
 .invalid {
     background-color: red;
     color: white;
-
 }
 
-
-.sudokuTable > div > *{
+.sudokuTable > div > * {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,32 +48,31 @@
     height: 100%;
 }
 
-
-
 .rightB {
-    border-right: 5px  solid var(--baord-border-color);
+    border-right: 5px solid var(--board-border-color);
+    border-left: 5px solid var(--board-light-border-color);
 }
 
 .leftB {
-    border-left: 5px solid var(--baord-border-color);
+    border-left: 5px solid var(--board-border-color);
+    border-right: 5px solid var(--board-light-border-color);
 }
 
 .topB {
-    border-top: 5px solid var(--baord-border-color);
+    border-top: 5px solid var(--board-border-color);
+    border-bottom: 5px solid var(--board-light-border-color);
 }
 
 .bottomB {
-    border-bottom: 5px solid var(--baord-border-color);
+    border-bottom: 5px solid var(--board-border-color);
+    border-top: 5px solid var(--board-light-border-color);
 }
 
-.sudokuTable > div{
-    
-    
+.sudokuTable > div {
     margin: 0;
     /* border: inherit; */
 
     /* border: 1px solid; */
 
     /* width: 10%; */
-
 }

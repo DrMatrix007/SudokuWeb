@@ -5,6 +5,7 @@ export default function SignIn() {
     const user = useUser();
     const auth = getAuth();
 
+    //sign in with google
     const login = async () => {
         var r = await signInWithPopup(auth, new GoogleAuthProvider());
 

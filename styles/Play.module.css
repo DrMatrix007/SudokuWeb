@@ -1,0 +1,16 @@
+.button {
+    margin: 1rem;
+    border:none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    transition-duration: 200ms;
+}
+
+.button:hover {
+    background-color: #696969;  
+    color: white;
+
+}
+
+.diff_buttons > *:hover  {
+}

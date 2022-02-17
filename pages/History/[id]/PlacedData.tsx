@@ -12,6 +12,7 @@ import React from 'react'
 
 export default function PlacedData() {
 
+
     const router = useRouter();
 
     const user = useUser();
@@ -19,7 +20,7 @@ export default function PlacedData() {
     const { id } = router.query as { id: string };
 
 
-
+    //if the user is not logged in, show the sign in page
     return <>
         {user ? <PlacedDataWithData id={id} user={user} /> : <SignIn />}
     </>;
