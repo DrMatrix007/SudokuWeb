@@ -30,7 +30,7 @@ export default function IsValidStatsComponent(props: IsValidStatsComponentProps)
             mostUncommonPlaceCol: mostUnCommon(list.map(step => step.col)),
             mostUncommonPlaceRow: mostUnCommon(list.map(step => step.row)),
         }
-    }, props.list)
+    }, [props.list]);
 
     return (
         <table>
