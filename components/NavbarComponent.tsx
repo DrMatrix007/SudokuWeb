@@ -35,6 +35,9 @@ export default function Navbar() {
 
         <div className={styles.expanded}>
         </div>
+        {
+            // if the user isnt logged in, show the login button and vice versa
+        }
         <a onClick={() => (user ? logout : login)()}>
             {(() => {
                 if (user) {

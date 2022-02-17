@@ -1,6 +1,7 @@
 import { Board, BOARD_SIZE } from "@utils/sudoku";
 
 function notInRow(arr: Board, row: number) {
+    // check if the value is in the row
     let st = new Array();
 
     for (let i = 0; i < BOARD_SIZE; i++) {
@@ -12,6 +13,7 @@ function notInRow(arr: Board, row: number) {
 }
 
 function notInCol(arr: Board, col: number) {
+    // check if the value is in the col
     let st = new Array();
 
     for (let i = 0; i < BOARD_SIZE; i++) {
@@ -25,6 +27,7 @@ function notInCol(arr: Board, col: number) {
 }
 
 function notInBox(arr: Board, startRow: number, startCol: number) {
+    // check if the value is in the box
     let st = Array();
 
     for (let row = 0; row < 3; row++) {
@@ -44,6 +47,7 @@ function notInBox(arr: Board, startRow: number, startCol: number) {
 }
 
 export function isValid(arr: Board, row: number, col: number) {
+    //check if the value is valid with the row, col and box
     return (
         notInRow(arr, row) &&
         notInCol(arr, col) &&
@@ -52,9 +56,10 @@ export function isValid(arr: Board, row: number, col: number) {
 }
 
 export default function isValidConfig(arr: Board) {
+    //check if board is valid
     for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr[i].length; j++) {
-            if ((!isValid(arr, i, j)) || arr[i][j]==0) return false;
+            if (!isValid(arr, i, j) || arr[i][j] == 0) return false;
         }
     }
     return true;
